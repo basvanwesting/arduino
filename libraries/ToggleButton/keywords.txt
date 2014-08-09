@@ -1,0 +1,6 @@
+ToggleButton	KEYWORD1
+cycle	KEYWORD2
+toggle	KEYWORD2
+changedUp	KEYWORD2
+changedDown	KEYWORD2
+isOn	KEYWORD2
