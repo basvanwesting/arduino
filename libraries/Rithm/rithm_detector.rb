@@ -38,11 +38,14 @@ class RithmDetector
     time_series.map { |time| time - offset_time }
   end
 
-  def valid_time_series?
-    error = allowed_time_serie_ranges.zip(offset_time_series).detect do |range, time|
+  def invalid_time_series?
+    allowed_time_serie_ranges.zip(offset_time_series).detect do |range, time|
       !range.include?(time)
     end
-    !error
+  end
+
+  def valid_time_series?
+    !invalid_time_series?
   end
   alias_method :valid?, :valid_time_series?
 
