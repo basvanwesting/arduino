@@ -18,7 +18,7 @@ void Morse::dot()
   digitalWrite(_pin, HIGH);
   delay(250);
   digitalWrite(_pin, LOW);
-  delay(250);  
+  delay(250);
 }
 
 void Morse::dash()

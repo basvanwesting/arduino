@@ -1,4 +1,5 @@
-#include <Morse.h>
+#include "Arduino.h"
+#include "../libraries/Morse/Morse.h"
 
 Morse morse(13);
 
