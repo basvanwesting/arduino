@@ -1,11 +1,9 @@
-#include <stdint.h>
-
 /**
  * Setup for blinking.
  *
  * @param pin - pin number
  **/
-void blink_setup(uint8_t pin=13);
+void blink_setup(int pin=13);
 
 
 /**
@@ -14,4 +12,4 @@ void blink_setup(uint8_t pin=13);
  * @param duration - duration in miliseconds
  * @param pin      - pin number
  **/
-void blink(unsigned long duration, uint8_t pin=13);
+void blink(long duration, int pin=13);
