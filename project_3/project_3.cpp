@@ -1,3 +1,5 @@
+#include "Arduino.h"
+
 const int sensorPin = A0;
 const float baselineTemp = 23.0;
 const int step = 1;
