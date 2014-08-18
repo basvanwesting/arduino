@@ -1,6 +1,13 @@
 # This configuration file outlines some of the ways Arduino CMake
 # can be used. For a detailed explenation of all the options please
 # reade README.rst.
+set(CMAKE_TOOLCHAIN_FILE /Users/basvanwesting/workspace/arduino-cmake/cmake/ArduinoToolchain.cmake) # Arduino Toolchain
+
+cmake_minimum_required(VERSION 2.8)
+#====================================================================#
+#  Setup Project                                                     #
+#====================================================================#
+project(ArduinoExample C CXX)
 
 set(ARDUINO_DEFAULT_BOARD uno) # Default Board ID, when not specified
 set(ARDUINO_DEFAULT_PORT /dev/ttyUSB0) # Default Port, when not specified /dev/tty.usbmodemXXX
