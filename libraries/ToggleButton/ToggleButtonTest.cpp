@@ -4,21 +4,21 @@
 using namespace ::testing;
 using namespace std;
 
-TEST(FirstTest, SimpleTrue) {
-   ASSERT_TRUE(true);
-}
-
-TEST(SimplePinTest, trivial)
+TEST(ToggleButtonTest, InitiallyOff)
 {
-	EXPECT_EQ(1,1);
-}
-
-TEST(ToggleButtonTest, Toggle) {
   ToggleButton onOffButton(5);
   EXPECT_EQ(onOffButton.isOn(),false);
+}
+
+TEST(ToggleButtonTest, OnAfterOneToggle) {
+  ToggleButton onOffButton(5);
   onOffButton.toggle();
   EXPECT_EQ(onOffButton.isOn(),true);
+}
+
+TEST(ToggleButtonTest, OffAgainAfterTwoToggles) {
+  ToggleButton onOffButton(5);
+  onOffButton.toggle();
   onOffButton.toggle();
   EXPECT_EQ(onOffButton.isOn(),false);
 }
-
