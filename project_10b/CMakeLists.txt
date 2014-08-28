@@ -2,15 +2,14 @@ cmake_minimum_required(VERSION 2.8)
 
 set(CMAKE_TOOLCHAIN_FILE /Users/basvanwesting/workspace/arduino-cmake/cmake/ArduinoToolchain.cmake) # Arduino Toolchain
 project(ArduinoExample C CXX)
-
-#set(${FIRMWARE_NAME}_PORT /dev/tty.usbmodem1411)
+include_directories($ENV{ARDUINO_PROJECTS_HOME}/libraries)
 
 #====================================================================#
 # Advanced static library exmaple
 #====================================================================#
 generate_arduino_library(toggle_button_lib
-  SRCS ../libraries/ToggleButton/ToggleButton.cpp
-  HDRS ../libraries/ToggleButton/ToggleButton.h
+  SRCS $ENV{ARDUINO_PROJECTS_HOME}/libraries/ToggleButton/ToggleButton.cpp
+  HDRS $ENV{ARDUINO_PROJECTS_HOME}/libraries/ToggleButton/ToggleButton.h
   BOARD uno)
 
 #====================================================================#

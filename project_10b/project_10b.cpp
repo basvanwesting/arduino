@@ -1,5 +1,5 @@
 #include "Arduino.h"
-#include "../libraries/ToggleButton/ToggleButton.h"
+#include "ToggleButton/ToggleButton.h"
 
 const int controlPin1 = 2;
 const int controlPin2 = 3;
