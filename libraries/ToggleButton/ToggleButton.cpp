@@ -7,14 +7,14 @@
 #include "Arduino.h"
 #include "ToggleButton.h"
 
-ToggleButton::ToggleButton(int pin)
+ToggleButton::ToggleButton(uint8_t pin)
 {
   pinMode(pin, INPUT);
   _pin = pin;
   _prevState = LOW;
   _currentState = LOW;
   _toggleState = false;
-}
+};
 
 void ToggleButton::cycle() {
   _prevState = _currentState;
@@ -23,7 +23,7 @@ void ToggleButton::cycle() {
   if(changedUp()) {
     toggle();
   }
-}
+};
 
 bool ToggleButton::changedUp() {
   if((_currentState != _prevState) && (_currentState == HIGH)) {
@@ -31,7 +31,7 @@ bool ToggleButton::changedUp() {
   } else {
     return false;
   }
-}
+};
 
 bool ToggleButton::changedDown() {
   if((_currentState != _prevState) && (_currentState == LOW)) {
@@ -39,13 +39,13 @@ bool ToggleButton::changedDown() {
   } else {
     return false;
   }
-}
+};
 
 void ToggleButton::toggle() {
   _toggleState = !_toggleState;
-}
+};
 
 bool ToggleButton::isOn() {
   return _toggleState;
-}
+};
 

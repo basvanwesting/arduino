@@ -12,16 +12,16 @@
 class ToggleButton
 {
   public:
-    ToggleButton(int pin);
+    ToggleButton(uint8_t pin);
     void cycle();
     void toggle();
     bool changedUp();
     bool changedDown();
     bool isOn();
   private:
-    int _pin;
-    int _currentState;
-    int _prevState;
+    uint8_t _pin;
+    uint8_t _currentState;
+    uint8_t _prevState;
     bool _toggleState;
 };
 
