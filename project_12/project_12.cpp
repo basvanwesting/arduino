@@ -1,3 +1,4 @@
+#include "Arduino.h"
 #include <Servo.h>
 Servo myServo;
 
@@ -14,6 +15,21 @@ const int quietKnock = 2;
 const int loudKnock = 100;
 boolean locked = false;
 int numberOfKnocks = 0;
+
+boolean checkForKnock(int value){
+  if (value > quietKnock && value < loudKnock){
+    digitalWrite(yellowLed,HIGH);
+    delay(200);
+    digitalWrite(yellowLed,LOW);
+    Serial.print("Valid knock of value ");
+    Serial.println(value);
+    return true;
+  } else {
+    Serial.print("Bad knock value ");
+    Serial.println(value);
+    return false;
+  }
+}
 
 void setup(){
   myServo.attach(9);
@@ -61,17 +77,3 @@ void loop(){
   }
 }
 
-boolean checkForKnock(int value){
-  if (value > quietKnock && value < loudKnock){
-    digitalWrite(yellowLed,HIGH);
-    delay(200);
-    digitalWrite(yellowLed,LOW);
-    Serial.print("Valid knock of value ");
-    Serial.println(value);
-    return true;
-  } else {
-    Serial.print("Bad knock value ");
-    Serial.println(value);
-    return false;
-  }
-}

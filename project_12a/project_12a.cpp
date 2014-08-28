@@ -1,5 +1,4 @@
-#include <Servo.h>
-Servo myServo;
+#include "Arduino.h"
 
 const int piezo = A0;
 int piezoVal;
