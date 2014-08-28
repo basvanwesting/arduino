@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-set(CMAKE_TOOLCHAIN_FILE /Users/basvanwesting/workspace/arduino-cmake/cmake/ArduinoToolchain.cmake) # Arduino Toolchain
+set(CMAKE_TOOLCHAIN_FILE $ENV{ARDUINO_CMAKE_HOME}/cmake/ArduinoToolchain.cmake) # Arduino Toolchain
 project(ArduinoExample C CXX)
 
 #====================================================================#
