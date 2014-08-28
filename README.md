@@ -2,8 +2,19 @@ arduino
 =======
 
 Arduino play stuff.
-Using cmake to build and upload the firmware.
-Using cmake to run the library test suites.
+Using cmake to build and upload the firmware. e.g.:
+```
+$ cd project_morse
+$ cbuild
+$ mybuild/make upload
+$ mybuild/make morse-serial # "<project name>-serial" for stream of serial port
+```
+
+Using cmake to run the library test suites. e.g.:
+```
+$ cd libraries/ToggleButton
+$ cbuildtest
+```
 
 Dependencies:
 * https://code.google.com/p/googlemock/
