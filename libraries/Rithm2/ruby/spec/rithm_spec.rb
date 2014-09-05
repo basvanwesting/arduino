@@ -9,10 +9,10 @@ describe Rithm do
   end
 
   describe "#play_function_proc" do
-    subject { described_class.new(pulses) }
-    let(:timestamps) { 0.step(2,0.25).to_a }
 
     context 'beats' do
+      subject { described_class.new(pulses) }
+      let(:timestamps) { 0.step(2,0.25).to_a }
       let(:pulses) { [1,1,1] }
       let(:output) { [3.99, 0.18, 0, 0.18, 3.99, 0.18, 0, 0.18, 3.99] }
 
@@ -26,6 +26,24 @@ describe Rithm do
         end
       end
     end
+
+    #context 'beats' do
+      #subject { described_class.new(pulses, 11) }
+      #let(:timestamps) { 0.step(1,0.00909).to_a }
+      #let(:pulses) { [1,1,1,1,0,1,0,1,0,1,1,1] }
+      #let(:output) { [3.99, 0.18, 0, 0.18, 3.99, 0.18, 0, 0.18, 3.99] }
+
+      #it 'returns an output stream' do
+        #play_function_proc = subject.play_function_proc
+        #values = timestamps.map do |timestamp|
+          #play_function_proc.call(timestamp + subject.proc_created_at)
+        #end
+        #puts values
+        #values.zip(output).each do |actual, expected|
+          #actual.should be_within(0.01).of(expected)
+        #end
+      #end
+    #end
   end
 end
 
