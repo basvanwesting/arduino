@@ -4,7 +4,7 @@ class InputTimeSeries < SimpleDelegator
   attr_accessor :max_length
 
   def <<(entry)
-    if size >= max_length
+    if max_length && size >= max_length
       shift
     end
     super

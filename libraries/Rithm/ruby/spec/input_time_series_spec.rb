@@ -20,5 +20,19 @@ describe InputTimeSeries do
       subject.should == [3,4,'a']
     end
 
+    it 'does not truncate if max_length is not set' do
+      subject.should == []
+      subject << 1
+      subject.should == [1]
+      subject << 2
+      subject.should == [1,2]
+      subject << 3
+      subject.should == [1,2,3]
+      subject << 4
+      subject.should == [1,2,3,4]
+      subject << 'a'
+      subject.should == [1,2,3,4,'a']
+    end
+
   end
 end
