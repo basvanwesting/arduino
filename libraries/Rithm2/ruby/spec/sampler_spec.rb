@@ -8,7 +8,7 @@ describe Sampler do
 
     before do
       allow(function).to receive(:call).and_return(1,2,3)
-      allow(subject).to receive(:delay_to_next_sample).and_return(0)
+      allow(subject).to receive(:delay_to_next_sample).and_return(0.01)
     end
 
     it 'builds up input time series' do

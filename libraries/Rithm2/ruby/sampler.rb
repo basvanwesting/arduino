@@ -4,12 +4,14 @@ class Sampler
 
   def initialize(frequency: frequency)
     self.frequency = frequency
-    self.last_sample_timestamp = current_time - interval
+    self.last_sample_timestamp = current_time
   end
 
   def sample(function)
     if delay_to_next_sample > 0.0
       sleep(delay_to_next_sample)
+    else
+      puts "*** UNDERSAMPLING ***"
     end
     function.call(current_time).tap { self.last_sample_timestamp = current_time }
   end
