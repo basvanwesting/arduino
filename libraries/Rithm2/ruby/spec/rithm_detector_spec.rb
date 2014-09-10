@@ -4,7 +4,7 @@ describe RithmDetector do
   let(:beats) { [1,1,0,1,0,0,1,1] }
   let(:frequency) { 2 }
   let(:rithm) { Rithm.new(beats, frequency) }
-  let(:expected_pulse_timestamps) { rithm.to_pulse_timestamps }
+  let(:expected_pulse_timestamps) { rithm.to_relative_pulse_timestamps }
 
   subject { described_class.new(rithm) }
 

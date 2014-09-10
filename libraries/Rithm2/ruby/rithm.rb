@@ -14,8 +14,8 @@ class Rithm
     Time.now.to_f
   end
 
-  def to_pulse_timestamps
-    PulseTimeSeries.new(pulses, frequency).to_pulse_timestamps
+  def to_relative_pulse_timestamps
+    PulseTimeSeries.new(pulses, frequency).to_relative_pulse_timestamps
   end
 
   def play
@@ -42,7 +42,7 @@ class Rithm
   end
 
   def pulse_functions
-    to_pulse_timestamps.map do |pulse_timestamp|
+    to_relative_pulse_timestamps.map do |pulse_timestamp|
       single_pulse_function(pulse_timestamp)
     end
   end

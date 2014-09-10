@@ -1,0 +1,2 @@
+class PulseTimestampBuffer
+end

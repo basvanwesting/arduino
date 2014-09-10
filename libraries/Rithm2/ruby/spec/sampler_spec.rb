@@ -40,7 +40,7 @@ describe 'Sampler Live test', slow: true do
 
     end_time = Time.now
 
-    (end_time.to_f - start_time.to_f).should be_within(0.1).of(0.75)
+    (end_time.to_f - start_time.to_f).should be_within(0.1).of(0.88)
     array.should == [1,2,3,4,5,6,7]
   end
 
