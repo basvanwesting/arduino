@@ -4,11 +4,15 @@ describe Buffer do
 
   subject { described_class.new(3) }
 
+  it 'starts with zero values' do
+    subject.to_a.should == [0,0,0]
+  end
+
   it 'keeps all new values when not full yet' do
     subject << 1
-    subject.to_a.should == [1]
+    subject.to_a.should == [0,0,1]
     subject << 2
-    subject.to_a.should == [1,2]
+    subject.to_a.should == [0,1,2]
     subject << 3
     subject.to_a.should == [1,2,3]
   end

@@ -11,7 +11,7 @@ class Sampler
     if delay_to_next_sample > 0.0
       sleep(delay_to_next_sample)
     else
-      puts "*** UNDERSAMPLING ***"
+      puts "*** UNDERSAMPLING (#{delay_to_next_sample})"
     end
     function.call(current_time).tap { self.last_sample_timestamp = current_time }
   end

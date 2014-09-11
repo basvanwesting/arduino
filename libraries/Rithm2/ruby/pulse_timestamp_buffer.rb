@@ -6,6 +6,10 @@ class PulseTimestampBuffer
     self.array = []
   end
 
+  def pulse!
+    self << Time.now.to_f
+  end
+
   def <<(entry)
     min_timestamp = entry - duration
     array.reject! { |e| e < min_timestamp }
@@ -14,6 +18,11 @@ class PulseTimestampBuffer
 
   def to_a
     array
+  end
+
+  def to_relative_a
+    offset_time = array.first
+    array.map { |time| time - offset_time }
   end
 
 end

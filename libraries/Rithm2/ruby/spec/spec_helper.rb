@@ -8,6 +8,7 @@ require_relative '../pulse_time_series'
 require_relative '../pulse_timestamp_buffer'
 require_relative '../rithm'
 require_relative '../rithm_detector'
+require_relative '../integrated_rithm_detector'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |c|

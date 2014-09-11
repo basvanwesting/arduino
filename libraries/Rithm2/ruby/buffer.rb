@@ -3,7 +3,7 @@ class Buffer
 
   def initialize(max_size)
     self.max_size = max_size
-    self.array = []
+    self.array = Array.new(max_size,0)
   end
 
   def <<(entry)

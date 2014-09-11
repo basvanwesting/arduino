@@ -10,12 +10,21 @@ class Rithm
     1.0 / frequency
   end
 
+  def duration
+    (pulses.size + 1) * interval
+  end
+
   def current_time
     Time.now.to_f
   end
 
   def to_relative_pulse_timestamps
-    PulseTimeSeries.new(pulses, frequency).to_relative_pulse_timestamps
+    [
+      pulses,
+      pulses.size.times.map { |t| t * interval },
+    ].transpose.map do |pulse, timestamp|
+      timestamp if pulse == 1
+    end.compact
   end
 
   def play
