@@ -1,52 +1,50 @@
 require_relative 'rithm'
 class RithmDetector
-  attr_accessor :rithm, :margin
-  attr_accessor :expected_pulse_time_series, :pulse_time_series
+  attr_accessor :rithm, :timing_margin, :scaling_margin
+  attr_accessor :expected_relative_pulse_timestamps, :pulse_timestamps
 
-  def initialize(rithm, margin: nil, pulse_time_series: [])
+  def initialize(rithm, timing_margin: nil, scaling_margin: nil, pulse_timestamps: [])
     self.rithm = rithm
-    self.margin = margin || rithm.interval * 0.25
-    self.pulse_time_series = pulse_time_series
-
-    self.expected_pulse_time_series = rithm.to_pulse_time_series
-  end
-
-  def set_pulse_time_series=(new_pulse_time_series)
-    self.pulse_time_series = new_pulse_time_series
-    truncate_pulse_time_series!
-  end
-
-  def truncate_pulse_time_series!
-    while pulse_time_series.size > expected_pulse_time_series.size
-      pulse_time_series.shift
-    end
-  end
-
-  def detect_beat!
-    self.pulse_time_series << Time.now
-    truncate_pulse_time_series!
+    self.timing_margin = timing_margin || rithm.interval * 0.25
+    self.scaling_margin = scaling_margin || 0.25
+    self.pulse_timestamps = pulse_timestamps
+    self.expected_relative_pulse_timestamps = rithm.to_relative_pulse_timestamps
   end
 
   def allowed_time_serie_ranges
-    expected_pulse_time_series.map do |time|
-      (time - margin)..(time + margin)
+    scale = determine_scale
+    expected_relative_pulse_timestamps.map do |time|
+      scaled_time = time * scale
+      (scaled_time - timing_margin)..(scaled_time + timing_margin)
     end
   end
 
-  def offset_pulse_time_series
-    offset_time = pulse_time_series.first
-    pulse_time_series.map { |time| time - offset_time }
+  def determine_scale
+    actual_runtime = relative_pulse_timestamps.last
+    expected_runtime = expected_relative_pulse_timestamps.last
+    scaling_factor = actual_runtime.to_f / expected_runtime
+
+    if scaling_factor > (1.0 - scaling_margin) and scaling_factor < (1.0 + scaling_margin)
+      scaling_factor
+    else
+      1.0
+    end
   end
 
-  def invalid_pulse_time_series?
-    allowed_time_serie_ranges.zip(offset_pulse_time_series).detect do |range, time|
+  def relative_pulse_timestamps
+    offset_time = pulse_timestamps.first
+    pulse_timestamps.map { |time| time - offset_time }
+  end
+
+  def invalid_pulse_timestamps?
+    allowed_time_serie_ranges.zip(relative_pulse_timestamps).detect do |range, time|
       !range.include?(time)
     end
   end
 
-  def valid_pulse_time_series?
-    !invalid_pulse_time_series?
+  def valid_pulse_timestamps?
+    !invalid_pulse_timestamps?
   end
-  alias_method :valid?, :valid_pulse_time_series?
+  alias_method :valid?, :valid_pulse_timestamps?
 
 end
