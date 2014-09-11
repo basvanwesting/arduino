@@ -47,7 +47,7 @@ describe Rithm do
   end
 end
 
-describe "play rithm live test", slow: true do
+describe "play rithm live test", slow: true, debug: true do
 
   let!(:rithm) { Rithm.new([1,1,1,1,0,1,0,1,0,1,1,1],22) }
 

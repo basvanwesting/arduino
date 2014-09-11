@@ -21,7 +21,7 @@ describe Sampler do
 
 end
 
-describe 'Sampler Live test', slow: true do
+describe 'Sampler Live test', slow: true, debug: true do
 
   subject { Sampler.new(frequency: 8) }
   let(:function) { double }
