@@ -12,16 +12,17 @@
 class Sampler
 {
   public:
-    Sampler(uint8_t pin, uint8_t frequency, uint8_t max_samples);
+    Sampler(int, int);
     ~Sampler();
-    void cycle();
-    uint8_t* get_samples();
-    void add_sample(uint8_t);
+    int pin();
+    int frequency();
+    int interval_in_ms();
+    int delay_to_next_sample();
+    int sample();
   private:
-    uint8_t _pin;
-    uint8_t _frequency;
-    uint8_t _max_samples;
-    uint8_t* _samples;
+    int _pin = 0;
+    int _frequency = 1;
+    unsigned long _last_sample_timestamp = 0;
 };
 
 #endif

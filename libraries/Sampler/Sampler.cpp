@@ -7,27 +7,41 @@
 #include "Arduino.h"
 #include "Sampler.h"
 
-Sampler::Sampler(uint8_t pin, uint8_t frequency, uint8_t max_samples)
+Sampler::Sampler(int pin, int frequency)
 {
   _pin = pin;
   _frequency = frequency;
-  _max_samples = max_samples;
-  _samples = new uint8_t[max_samples];
-
-  pinMode(pin, INPUT);
+  _last_sample_timestamp = millis();
 };
 
 Sampler::~Sampler() {
-  delete _samples;
+};
+
+int Sampler::pin() {
+  return _pin;
 }
 
-void Sampler::cycle() {
+int Sampler::frequency() {
+  return _frequency;
+}
+
+int Sampler::sample() {
+  int required_delay = this->delay_to_next_sample();
+  if(required_delay > 0) {
+    delay(required_delay);
+  } else {
+    Serial.print("UNDERSAMPLING ");
+    Serial.println(required_delay);
+  }
+
+  _last_sample_timestamp = millis();
+  return analogRead(_pin);
 };
 
-uint8_t* Sampler::get_samples() {
-  return _samples;
-};
+int Sampler::interval_in_ms() {
+  return 1000 / _frequency;
+}
 
-void Sampler::add_sample(uint8_t sample) {
-
+int Sampler::delay_to_next_sample() {
+  return _last_sample_timestamp + this->interval_in_ms() - millis();
 };
