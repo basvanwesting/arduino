@@ -20,9 +20,9 @@ class Sampler
     int delay_to_next_sample();
     int sample();
   private:
-    int _pin = 0;
-    int _frequency = 1;
-    unsigned long _last_sample_timestamp = 0;
+    int _pin;
+    int _frequency;
+    unsigned long _last_sample_timestamp;
 };
 
 #endif
